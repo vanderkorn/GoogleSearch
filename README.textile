@@ -1,0 +1,2 @@
+	<p>It is the program for parsing of search engines.<br />
+Only for home use!</p>
