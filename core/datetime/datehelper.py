@@ -1,0 +1,25 @@
+# -*- coding=utf-8 -*-
+'''
+Created on 16.12.2011
+
+@author: vanderkorn
+'''
+#����������� ��� ������ �
+import datetime
+import time
+import os
+class DateHelper(object):
+    def __init__(self):
+        os.environ['TZ'] = "Europe/Moscow"
+        #time.()
+    @staticmethod
+    def get_time():
+        date = datetime.datetime.now()
+        return date.strftime("%d:%m:%Y %H:%M:%S")
+    @staticmethod
+    def get_date():
+        date = datetime.datetime.now()
+        year = date.strftime("%Y")
+        month = date.strftime("%m")
+        day = date.strftime("%d")
+        return (year,month,day)
