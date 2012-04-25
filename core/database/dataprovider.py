@@ -1,9 +1,11 @@
+#-------------------------------------------------------------------------------
+# Created on 14.12.2011
+# 
+# @author: Van Der Korn
+# @file: dataprovider.py
+#-------------------------------------------------------------------------------
 # -*- coding=utf-8 -*-
-'''
-Created on 13.12.2011
 
-@author: vanderkorn
-'''
 # Абстрактный класс поисковой машины
 from abc import ABCMeta, abstractmethod, abstractproperty
 

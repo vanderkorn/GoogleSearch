@@ -1,9 +1,11 @@
+#-------------------------------------------------------------------------------
+# Created on 14.12.2011
+# 
+# @author: Van Der Korn
+# @file: yandexmachine.py
+#-------------------------------------------------------------------------------
 # -*- coding=utf-8 -*-
-'''
-Created on 06.12.2011
 
-@author: Ivan Kornilov
-'''
 
 from  searchmachine import SearchMachine
 import urllib

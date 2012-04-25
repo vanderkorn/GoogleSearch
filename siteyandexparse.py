@@ -1,9 +1,11 @@
+#-------------------------------------------------------------------------------
+# Created on 14.12.2011
+# 
+# @author: Van Der Korn
+# @file: siteyandexparse.py
+#-------------------------------------------------------------------------------
 # -*- coding=utf-8 -*-
-'''
-Created on 14.12.2011
 
-@author: vanderkorn
-'''
 
 from core.searchmachine.yandexmachine import *
 from core.database.yandexmysqlprovider import *

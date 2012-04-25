@@ -1,2 +1,0 @@
-INSERT INTO  `seocalc_20100301`.`useragents` (`name`)VALUES ('dd');
-INSERT INTO  `seocalc_20100301`.`ip addresses` (`city_id`,`ip`)VALUES ('1','');

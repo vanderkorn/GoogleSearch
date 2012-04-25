@@ -1,10 +1,10 @@
+#-------------------------------------------------------------------------------
+# Created on 14.12.2011
+# 
+# @author: Van Der Korn
+# @file: logger.py
+#-------------------------------------------------------------------------------
 # -*- coding=utf-8 -*-
-
-'''
-Created on 14.12.2011
-
-@author: vanderkorn
-'''
 
 from abc import ABCMeta, abstractmethod, abstractproperty
 

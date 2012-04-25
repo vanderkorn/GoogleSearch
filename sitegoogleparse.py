@@ -1,9 +1,10 @@
+#-------------------------------------------------------------------------------
+# Created on 14.12.2011
+# 
+# @author: Van Der Korn
+# @file: sitegoogleparse.py
+#-------------------------------------------------------------------------------
 # -*- coding=utf-8 -*-
-'''
-Created on 14.12.2011
-
-@author: vanderkorn
-'''
 from core.searchmachine.googlemachine import *
 from core.database.googlemysqlprovider import *
 from core.logger.filelogger import *

@@ -1,9 +1,11 @@
+#-------------------------------------------------------------------------------
+# Created on 14.12.2011
+# 
+# @author: Van Der Korn
+# @file: yandexmysqlprovider.py
+#-------------------------------------------------------------------------------
 # -*- coding=utf-8 -*-
-'''
-Created on 13.12.2011
 
-@author: vanderkorn
-'''
 
 from  mysqlprovider import MysqlProvider
 import MySQLdb
