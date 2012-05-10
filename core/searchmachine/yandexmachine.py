@@ -14,24 +14,24 @@ import json
 import re
 import time
 
-#Библиотека для работы с curl
+#Library for work with curl
 import pycurl
 import StringIO
 import os
 import sys,traceback
 from xml.parsers.expat import ExpatError
-#Библиотека для работы с xml
+#Library for work with xml
 from xml.dom.minidom import parse, parseString
 
 class YandexMachine(SearchMachine):    
-    '''  Поисковая машина Yandex'''
+    '''  Search engine Yandex'''
     def __init__(self,deep,timeout,host,user,key):
-        '''    Констурктор        '''
-        self.__name='Yandex' #имя машины
-        self.__deep=deep #глубина поиска
-        self.__host=host#адрес сайта
-        self.__timeout=timeout #таймаут внутренних запросов
-        self.__countresults=50#количество результатов на странице
+        '''    Constructor        '''
+        self.__name='Yandex' #name engine
+        self.__deep=deep #deep search
+        self.__host=host#name site
+        self.__timeout=timeout #timeout internal request
+        self.__countresults=50#count results on page
         self.__url='http://xmlsearch.yandex.ru:80/xmlsearch?%s'
         self.__queryXML = "<?xml version='1.0' encoding='utf-8'?><request><query>%s</query><page>%s</page><groupings><groupby attr='d' mode='deep' groups-on-page='%s' docs-in-group='1'/></groupings></request>"
         self.__user=user
@@ -43,43 +43,43 @@ class YandexMachine(SearchMachine):
             self.__param["key"]=str(self.__key)    
        
     def name(self):
-        '''Получить имя машины'''
+        '''Get name engine'''
         return self.__name
     
     def host(self):
-        '''Получить имя сайта'''
+        '''Get name site'''
         return  self.__host
     
     def url(self):
-        '''Сгенерировать URL'''
+        '''Generate URL'''
         query = urllib.urlencode(self.__param,doseq=0)
         url = self.__url% (query) #подготовили url
         return  url
 
     def deep(self):
-        '''Получить глубину поиска'''
+        '''Get deep search'''
         return self.__deep
 
     def parse(self, keyword,useragent,region):
-        '''Парсинг выдачи'''
+        '''Parse output Google'''
         
-        num_pages= self.__deep/self.__countresults#количество страниц
-        #Формируем XML запрос для передачи xml.yandex.ru
+        num_pages= self.__deep/self.__countresults#count pages
+        #Generate XML request for transmission xml.yandex.ru
 
-        #Создаем список параметров передаваемых страннице xml.yandex
+        #Create the parameter list transferred to page xml.yandex
         self.__param["lr"]=str(region)
         
         for i in range(0,num_pages):
-            fullurl = YandexMachine.url(self) #подготовили url
+            fullurl = YandexMachine.url(self) #prepare url
             queryXML=self.__queryXML % (keyword,str(i),str(self.__countresults))
             
-            #header = {"User-Agent":useragent}#подставили имя браузера
+            #header = {"User-Agent":useragent}# added a browser name
             xml_doc = self.get_url(fullurl,queryXML)
             try:
                 xml_doc = parseString(xml_doc)
             except ExpatError:
                 raise
-            #Проверяем на ошибку при доступе к xml
+            #Check error in case of access toк xml
             if xml_doc.getElementsByTagName("error"):
                 xml_doc.unlink()
                 xml_doc = self.get_url(fullurl,queryXML,"91.201.55.106:3128")
@@ -95,33 +95,33 @@ class YandexMachine(SearchMachine):
                 time.sleep(self.__timeout/1000)
         return -1
         
-    #Функция для получения странниц с передачей POST запроса
+    # Function for receiving pages with transmission of POST of request
     def get_url(self,url,query,proxy=""):
-        #инициализируем обьекты
+        #initialize objects
         data = StringIO.StringIO()
         curl = pycurl.Curl()
-        #настраиваем pycurl
+        #set up pycurl
         curl.setopt(pycurl.FOLLOWLOCATION, 1)
         curl.setopt(pycurl.CONNECTTIMEOUT, 30)
         curl.setopt(pycurl.URL, url)
         curl.setopt(pycurl.WRITEFUNCTION, data.write)
         curl.setopt(pycurl.POST, 1)
         curl.setopt(pycurl.POSTFIELDS, query)
-        #Если подключились с проксиком
+        #If connect with proxy
         timeout_down=800
         timeout_up=1200
         if len(proxy)>0:
             curl.setopt(pycurl.PROXY,proxy)
-        #пробуем выполнить запрос
+        #Try run request
         curl.perform()
 
-        #закрываем соединение
+        #close connection
         curl.close()
-        #возвращаем полученную странницу
+        #return the received page
         return data.getvalue()
 
     def checkhost(self,xml_doc):
-        '''Проверить выбранный URl на соответвие хосту'''
+        '''Check selected URl on compliance to a host'''
         position = 0
         found = 0
         CurrentLenXML=len(xml_doc.getElementsByTagName("domain"))
@@ -131,29 +131,29 @@ class YandexMachine(SearchMachine):
     
         if scan_deep > 0:
             for cur_node in xrange(0,scan_deep):
-                #увеличиваем позицию на 1
+                #Increase a line item on 1
                 position+=1
-                #Берем текущий домен из xml
+                #Take the current domain fromxml
                 #print cur_node
                 #print len(xml_doc.getElementsByTagName("domain"))
                 #if (xml_doc.getElementsByTagName("domain")[cur_node]):
                 cur_domain = xml_doc.getElementsByTagName("domain")[cur_node].childNodes[0].data
                 #print cur_domain
-                #Если домен с www. до урезаем его до без www. , т.к в базе храняться именно такие адреса , иначе оставляем его как есть
+                #If the domain with www. to we cut down it to without www., as such addresses are stored in basis, differently we leave it as is
                 if cur_domain[0:4] == "www.":
                     cur_domain = cur_domain[4:len(cur_domain)]
-                #Если текущий домен совпадает с искомым,то ...
+                #If the current domain matches with required
                 if cur_domain==self.__host:
                     found = 1
                     break
-                #Увеличиваем счетчик для взятия след. домена
+                #Increase the counter for taking a next domain
                 cur_node+=1
     
-        #Если совпадений с доменом небыло,то позиция равна 0
+        #If coincidence to the domain wasn't, the line item is equal 0
         if found == 0:
             position = -1
     
-        #Уничтожаем переменную с xml
+        # Destroy a variable with xml
         xml_doc.unlink()
         return position       
         

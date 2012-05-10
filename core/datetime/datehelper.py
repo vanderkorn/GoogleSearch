@@ -9,6 +9,8 @@ import datetime
 import time
 import os
 class DateHelper(object):
+     '''Helper class for working datetime'''
+    
     def __init__(self):
         os.environ['TZ'] = "Europe/Moscow"
         #time.()

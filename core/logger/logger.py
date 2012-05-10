@@ -11,33 +11,33 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 class Logger:
     __metaclass__ = ABCMeta
     '''
-    Класс журналирования
+    Class Logger
     '''
     
     @abstractmethod
     def open(self): 
         '''
-        Открыть журнал
+        Open log
         '''
         pass  
     
     @abstractmethod
     def close(self): 
         '''
-        Закрыть журнал
+        Close log
         '''
         pass  
     
     @abstractmethod
     def writelog(self,text): 
         '''
-        Записать в журнал
+        Write in log
         '''
         pass  
     
     @abstractmethod
     def __del__(self): 
         '''
-         Уничтожить журнал
+        Destroy log
         '''
         pass      

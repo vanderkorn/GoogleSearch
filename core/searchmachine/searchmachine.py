@@ -13,32 +13,32 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 class SearchMachine:
     __metaclass__ = ABCMeta
     '''
-   Абстактный класс поисковой машины
+  Abstract class search engine
     '''
 
     @abstractproperty
     def name(self):
-        ''' Имя машины'''
+        ''' Name engine'''
         pass
     
     @abstractproperty
     def host(self):
         '''
-        Адрес сайта
+        URL site
         '''
         pass
     
     @abstractproperty
     def deep(self):
         '''
-        Глубина поиска  
+        Deep search
         '''
         pass
     
     @abstractmethod
     def parse(self,keyword): 
         '''
-        Парсинг выдачи
+        Parse output
         '''
         pass      
     

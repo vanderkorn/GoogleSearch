@@ -12,10 +12,10 @@ import MySQLdb
 import MySQLdb.cursors
 
 class MysqlProvider(DataProvider):    
-    '''Провайдер БД MySQL'''
+    '''DataBase Provider MySQL'''
 
     def __init__(self,host,dbname,user,password):
-        '''констуктор'''
+        '''Constructor'''
         self.host=host
         self.dbname=dbname
         self.user=user
@@ -23,29 +23,29 @@ class MysqlProvider(DataProvider):
         MysqlProvider.connect(self)
 
     def connect(self):
-        '''соеденимся с БД и получим курсор'''
+        '''Connect to DataBase and we receive the cursor'''
         self.connection=MySQLdb.connect(host=self.host, user=self.user, passwd=self.password,db=self.dbname,cursorclass=MySQLdb.cursors.DictCursor)
         self.cursor = self.connection.cursor()
         
     def close(self):
-        '''закроем соединение'''
+        '''Close connection'''
         self.cursor.close()
         self.connection.close()
 
     def __del__(self):
-        '''деструктор'''
+        '''Destructor'''
         MysqlProvider.close(self)
         
     def set_charset(self,charset):
-        '''Установить кодировку'''
+        '''Set up encoding'''
         self.cursor.execute("SET CHARSET %s" %charset)
         
     @property    
     def rowcount(self):
-        '''Количество строк в последнем запросе'''
+        '''Count of lines in the last request'''
         return MysqlProvider._getrowcount(self)
     
     def _getrowcount(self):
-        '''Количество строк в последнем запросе'''
+        '''count of lines in the last request'''
         return self.cursor.rowcount
       

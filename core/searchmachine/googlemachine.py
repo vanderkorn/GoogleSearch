@@ -15,15 +15,15 @@ import re
 import time
 
 class GoogleMachine(SearchMachine):    
-    '''  Поисковая машина Google'''
+    '''  Search engine Google'''
     def __init__(self,deep,key,timeout,host):
-        '''    Констурктор        '''
-        self.__name='Google' #имя машины
-        self.__deep=deep #глубина поиска
-        self.__key=key #ключ google
-        self.__host=host#адрес сайта
-        self.__timeout=timeout #таймаут внутренних запросов
-        self.__countresults=8#количество результатов на странице
+        '''    Constructor        '''
+        self.__name='Google' #name engine
+        self.__deep=deep #deep search
+        self.__key=key #keyword google
+        self.__host=host#name site
+        self.__timeout=timeout #timeout internal request
+        self.__countresults=8#count results on page
         self.__url='http://ajax.googleapis.com/ajax/services/search/web?%s'
         self.__param = {
                         'v':'1.0',
@@ -35,38 +35,38 @@ class GoogleMachine(SearchMachine):
                         }
 
     def name(self):
-        '''Получить имя машины'''
+        '''Get name engine'''
         return self.__name
     
     def host(self):
-        '''Получить имя сайта'''
+        '''Get name site'''
         return  self.__host
     
     def url(self):
-        '''Сгенерировать URL'''
+        '''Generate URL'''
         query = urllib.urlencode(self.__param,doseq=0)
         url = self.__url% (query) #подготовили url
         return  url
 
     def deep(self):
-        '''Получить глубину поиска'''
+        '''Get deep search'''
         return self.__deep
     
     def parse(self, keyword,useragent,ip):
-        '''Парсинг выдачи'''
+        '''Parse output Google'''
         self.__param["q"]=keyword.strip("\r\n")
-        self.__param["userip"]=ip# пользовательский ип
-        num_pages= self.__deep/self.__countresults#количество страниц
+        self.__param["userip"]=ip# user IP
+        num_pages= self.__deep/self.__countresults#count pages
         
         for i in range(1,num_pages+1):
             start=(i-1)*8  
             self.__param["start"]=start
-            fullurl = GoogleMachine.url(self) #подготовили url
+            fullurl = GoogleMachine.url(self) #prepare url
         
-            header = {"User-Agent":useragent}#подставили имя браузера
-            page_request = urllib2.Request(url=fullurl, headers=header)#подготовили запрос
+            header = {"User-Agent":useragent}#added a browser name
+            page_request = urllib2.Request(url=fullurl, headers=header)#prepare request
     
-            results = urllib2.urlopen(url=page_request)#выполнили запрос
+            results = urllib2.urlopen(url=page_request)#run request
             encoding='utf-8'
             resultsjson = json.loads(results.read(),encoding)
             data = resultsjson['responseData']
@@ -88,7 +88,7 @@ class GoogleMachine(SearchMachine):
 #        return result
     
     def checkhost(self,source):
-        '''Проверить выбранный URl на соответвие хосту'''
+        '''To check selected URl on compliance to a host'''
         strpat='(.*)%s(.*)'%(self.__host)
         patternhost=re.compile(strpat)
         if patternhost.search(source)!=None:

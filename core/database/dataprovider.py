@@ -6,37 +6,37 @@
 #-------------------------------------------------------------------------------
 # -*- coding=utf-8 -*-
 
-# Абстрактный класс поисковой машины
+# Abstract class 
 from abc import ABCMeta, abstractmethod, abstractproperty
 
 class DataProvider:
     __metaclass__ = ABCMeta
     '''
-   Абстактный класс работы с БД
+   Abstract class for operation with a DataBase
     '''
     
     @abstractmethod
     def __init__(self,host,dbname,user,password):
-        '''Инициализаровать соединение'''
+        '''Initialization connection'''
         pass
     
     @abstractmethod
     def connect(self): 
         '''
-        Открыть соединения
+        Open connection
         '''
         pass  
     
     @abstractmethod
     def close(self): 
         '''
-        Закрытие соединения
+        Close connection
         '''
         pass  
        
     @abstractmethod
     def __del__(self): 
         '''
-        При уничтожении объекта
+        Remove object
         '''
         pass      

@@ -9,27 +9,27 @@
 from  logger import Logger
 
 class FileLogger(Logger):
-    '''Журналирование'''
+    '''File Logger'''
     
     def __init__(self,filename):
-        '''Инициализация журнала'''
+        '''Initialization logger'''
         self.filename=filename
         FileLogger.open(self)
           
     def open(self):
-        '''Открыть журнал'''
+        '''Open log'''
         self.f_log = open(self.filename,'w+')
 
     def close(self):
-        '''Закрыть журнал'''
+        '''Close log'''
         self.f_log.close()
 
     def writelog(self, text):
-        '''Записать в журнал'''
+        '''Write log'''
         self.f_log.write("%s\n" % text)
         self.f_log.flush()
 
     def __del__(self):
-        '''Уничтожить журнал'''
+        '''Destroy log'''
         FileLogger.close(self)
 
