@@ -10,6 +10,6 @@ Created on 06.12.2011
 @author: vanderkorn
 '''
 from core.searchmachine.googlemachine import *
-gMachine=GoogleMachine(50,'ABQIAAAAGDwMeqj4mf-zr79lESZrHhQKk7PsQRC9hShJoNd5vIdig4WNghRiNA-G53m6qeS7EnJCILGTIkSVLA',1000,'luxis.ru')
-result=gMachine.parse('раскрутка продвижение сайтов', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2', '88.85.195.22')
+gMachine=GoogleMachine(50,'fsdfsdfdsgfregreEnJCILGTIkSVLA',1000,'roop.com')
+result=gMachine.parse('site home', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2', '81.35.165.122')
 print result 

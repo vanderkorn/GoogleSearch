@@ -39,7 +39,7 @@ if site_id==None:
     raise SystemExit(1)
 
 
-connection=GoogleMysqlProvider(host='localhost',dbname='seocalc_20100301',user='root',password='')
+connection=GoogleMysqlProvider(host='localhost',dbname='dasda',user='root',password='')
 connection.set_charset(charset='utf8')
 
 keywords=connection.getkeywordsfromsite(site_id)
@@ -68,7 +68,7 @@ while i < count_keyword:
             id,keyword,domain,name,city_id=dict_keyword["id"],dict_keyword["key_word"],dict_keyword["domain"],dict_keyword["name"],dict_keyword["city_id"]
             useragent=connection.getuseragent() #get random user agent
             ip=connection.geiipfromcity(city_id) #get random IP from city
-            gMachine=GoogleMachine(50,'ABQIAAAAGDwMeqj4mf-zr79lESZrHhQKk7PsQRC9hShJoNd5vIdig4WNghRiNA-G53m6qeS7EnJCILGTIkSVLA',1000,domain)
+            gMachine=GoogleMachine(50,'wewqrew-rwer-G53m6qeS7EnJCILGTIkSVLA',1000,domain)
             result=gMachine.parse(keyword, useragent, ip)
             print result
             log.writelog("<tr><td align=center>" + str(i+1) + "</td><td>"+DateHelper.get_time()+"</td><td align=center>" + str(domain) + "</td><td align=center>" + str(keyword) + "</td><td align=center>" + str(result) + "</td></tr>")

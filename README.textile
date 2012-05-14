@@ -1,2 +1,21 @@
-	<p>It is the program for parsing of search engines.<br />
+<p>It is the program for parsing of search engines Google and Yandex.<br />
 Only for home use!</p>
+
+<p> The program uses a proxy server, User-Agents substitution, substitution of IP addresses (for regional search). </p>
+
+<p> Example: </p>
+
+<i>//Creates a copy of a class of parsing of Google.<br />
+//Parameters:<br />
+//-Depth of request<br />
+//-A key received from Google (search service on own site)<br />
+//-Timeout<br />
+//-Host</i><br />
+gMachine=GoogleMachine(50,'keygoogle',1000,'root.com')<br />
+//Function returns a line item in Google output <<br />
+//Parameters: <br />
+//-Request <br />
+//-User-Agent <br />
+//-An IP address (for regional search) <br />
+result=gMachine.parse('site home', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2', '81.25.195.28')<br />
+print result </i>

@@ -41,7 +41,7 @@ if site_id==None:
     raise SystemExit(1)
 
 
-connection=YandexMysqlProvider(host='localhost',dbname='seocalc_20100301',user='root',password='')
+connection=YandexMysqlProvider(host='localhost',dbname='dsadsa',user='root',password='')
 connection.set_charset(charset='utf8')
 
 keywords=connection.getkeywordsfromsite(site_id)
@@ -69,7 +69,7 @@ while i < count_keyword:
             dict_keyword=keywords[i]
             id,keyword,domain,region_id=dict_keyword["id"],dict_keyword["key_word"],dict_keyword["domain"],dict_keyword["region_id"]
             useragent=connection.getuseragent() #get random user agent
-            yaMachine=YandexMachine(50,1000,domain,'LaManshStrait','03.32599484:7b8e071b9f4c9b333d73304ea23f50ba')
+            yaMachine=YandexMachine(50,1000,domain,'dsa','03.32599484:7b8e071b9f4c9b333d73304ea23f50ba')
             result=yaMachine.parse(keyword, useragent, region_id)
             print result
             log.writelog("<tr><td align=center>" + str(i+1) + "</td><td>"+DateHelper.get_time()+"</td><td align=center>" + str(domain) + "</td><td align=center>" + str(keyword) + "</td><td align=center>" + str(result) + "</td></tr>")
