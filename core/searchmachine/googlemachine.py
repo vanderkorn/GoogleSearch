@@ -19,7 +19,7 @@ class GoogleMachine(SearchMachine):
     def __init__(self,deep,key,timeout,host):
         '''    Constructor        '''
         self.__name='Google' #name engine
-        self.__deep=deep #deep search
+        self.__deep=deep #deep search - max 64 items
         self.__key=key #keyword google
         self.__host=host#name site
         self.__timeout=timeout #timeout internal request
@@ -45,7 +45,7 @@ class GoogleMachine(SearchMachine):
     def url(self):
         '''Generate URL'''
         query = urllib.urlencode(self.__param,doseq=0)
-        url = self.__url% (query) #подготовили url
+        url = self.__url% (query)
         return  url
 
     def deep(self):
@@ -70,8 +70,12 @@ class GoogleMachine(SearchMachine):
             encoding='utf-8'
             resultsjson = json.loads(results.read(),encoding)
             data = resultsjson['responseData']
-            hits = data['results']
             
+            try:
+                hits = data['results']
+            except:
+                return -1
+
             j=1
             for h in hits: 
                 if GoogleMachine.checkhost(self,h['url']):
