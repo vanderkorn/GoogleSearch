@@ -32,7 +32,7 @@ class GoogleMysqlProvider(MysqlProvider):
         sql="SELECT ip FROM `ip_addresses` WHERE city_id=%s ORDER BY RAND() LIMIT 1" %city_id
         self.cursor.execute(sql)
         result=self.cursor.fetchall()
-        if MysqlProvider._getrowcount(self)==0:#если нету ип-адресов по городу возбмем любой
+        if MysqlProvider._getrowcount(self)==0:
             sql="SELECT ip FROM `ip_addresses` ORDER BY RAND() LIMIT 1"
             self.cursor.execute(sql)
             result=self.cursor.fetchall()

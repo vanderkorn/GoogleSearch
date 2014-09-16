@@ -32,7 +32,7 @@ class YandexMachine(SearchMachine):
         self.__host=host#name site
         self.__timeout=timeout #timeout internal request
         self.__countresults=50#count results on page
-        self.__url='http://xmlsearch.yandex.ru:80/xmlsearch?%s'
+        self.__url='http://xmlsearch.yandex.ru/xmlsearch?%s'
         self.__queryXML = "<?xml version='1.0' encoding='utf-8'?><request><query>%s</query><page>%s</page><groupings><groupby attr='d' mode='deep' groups-on-page='%s' docs-in-group='1'/></groupings></request>"
         self.__user=user
         self.__key=key
@@ -53,7 +53,7 @@ class YandexMachine(SearchMachine):
     def url(self):
         '''Generate URL'''
         query = urllib.urlencode(self.__param,doseq=0)
-        url = self.__url% (query) #подготовили url
+        url = self.__url% (query)
         return  url
 
     def deep(self):
@@ -79,7 +79,7 @@ class YandexMachine(SearchMachine):
                 xml_doc = parseString(xml_doc)
             except ExpatError:
                 raise
-            #Check error in case of access toк xml
+            #Check error in case of access to
             if xml_doc.getElementsByTagName("error"):
                 xml_doc.unlink()
                 xml_doc = self.get_url(fullurl,queryXML,"91.201.55.106:3128")

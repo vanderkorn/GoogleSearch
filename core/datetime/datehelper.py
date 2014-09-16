@@ -10,16 +10,16 @@ import time
 import os
 class DateHelper(object):
      '''Helper class for working datetime'''
-    
-    def __init__(self):
+   
+     def __init__(self):
         os.environ['TZ'] = "Europe/Moscow"
-        #time.()
-    @staticmethod
-    def get_time():
+    
+     @staticmethod
+     def get_time():
         date = datetime.datetime.now()
         return date.strftime("%d:%m:%Y %H:%M:%S")
-    @staticmethod
-    def get_date():
+     @staticmethod
+     def get_date():
         date = datetime.datetime.now()
         year = date.strftime("%Y")
         month = date.strftime("%m")
